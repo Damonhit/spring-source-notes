@@ -71,3 +71,36 @@ public class DemoApplication {
 除了这两个还有一个类`AnnotationConfigApplicationContext`比较值得我们关注，这个类是用来处理注解式编程的。
 
 而最上边的`ApplicationContext`则是大名鼎鼎的Spring核心上下文了。
+
+## 源码分析
+
+看一下这个类的源代码
+
+```java
+public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext {
+
+    //配置文件数组
+    @Nullable
+    private Resource[] configResources;
+
+    public ClassPathXmlApplicationContext(String configLocation) throws BeansException {
+        this(new String[] {configLocation}, true, null);
+    }
+
+    public ClassPathXmlApplicationContext(
+            String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)
+            throws BeansException {
+
+        super(parent);
+        // 根据提供的路径，处理成配置文件数组(以分号、逗号、空格、tab、换行符分割)
+        setConfigLocations(configLocations);
+        if (refresh) {
+            refresh();
+        }
+    }
+}
+```
+
+可以看到整体来看源码比较简单，只有`setConfigLocations`和`refresh`两个方法没有看到具体的实现。但是如果你因为这个而小巧了Spring那可就大错特错了，`setConfigLocations`只是一个开胃小菜，`refresh`才是我们本文的重点
+
+**setConfigLocations:**
