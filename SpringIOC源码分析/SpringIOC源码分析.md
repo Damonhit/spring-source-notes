@@ -60,14 +60,14 @@ public class DemoApplication {
 
 背景调查
 
-在文章开始的demo工程中，我选择使用了一个xml文件来配置了接口和实现类之间的关系，然后使用了ClassPathXmlApplicationContext这个类来加载这个配置文件。现在我们就先来看一下这个类到底是个什么东东
+在文章开始的demo工程中，我选择使用了一个xml文件来配置了接口和实现类之间的关系，然后使用了`ClassPathXmlApplicationContext`这个类来加载这个配置文件。现在我们就先来看一下这个类到底是个什么东东
 
 首先看一下继承关系图（只保留了跟本文相关的，省略了很多其他的继承关系）
 
-![ClassPathXmlApplicationContext](image/ClassPathXmlApplicationContext.png)
+![ClassPathXmlApplicationContext](https://github.com/Damonhit/spring-source-notes/raw/master/SpringIOC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image/ClassPathXmlApplicationContext.png)
 
-可以看到左下角的就是我们今天的主角ClassPathXmlApplicationContext、然后它的旁边是一个同门师兄弟FileSystemXmlApplicationContext。看名字就可以知道它们哥俩都是通过加载配置文件来启动Spring的，只不过一个是从程序内加载一个是从系统内加载。
+可以看到左下角的就是我们今天的主角`ClassPathXmlApplicationContext`、然后它的旁边是一个同门师兄弟`FileSystemXmlApplicationContext`。看名字就可以知道它们哥俩都是通过加载配置文件来启动Spring的，只不过一个是从程序内加载一个是从系统内加载。
 
-除了这两个还有一个类AnnotationConfigApplicationContext比较值得我们关注，这个类是用来处理注解式编程的。
+除了这两个还有一个类`AnnotationConfigApplicationContext`比较值得我们关注，这个类是用来处理注解式编程的。
 
-而最上边的ApplicationContext则是大名鼎鼎的Spring核心上下文了。
+而最上边的`ApplicationContext`则是大名鼎鼎的Spring核心上下文了。
